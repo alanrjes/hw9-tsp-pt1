@@ -2,20 +2,20 @@
 #include <cmath>  // std::sqrt
 #include <algorithm>  // std::random_shuffle
 
-std::istream& Cities::operator>> (std::istream& is) {
-  coord_t coords;
+std::istream& operator>> (std::istream& is, Cities& cities) {
+  Cities::coord_t coords;
   int i = 0;
   while (is>> coords.first>> coords.second) {
-    map_[i] = coords;
+    cities.map_[i] = coords;
     i++;
   }
   return is;
 }
 
-std::ostream& Cities::operator<< (std::ostream& os) {
-  int len = map_.size();
+std::ostream& operator<< (std::ostream& os, Cities& cities) {
+  int len = cities.map_.size();
   for (int i=0; i<len; i++) {
-    coord_t coords = map_[i];
+    Cities::coord_t coords = cities.map_[i];
     os<< coords.first<< coords.second;
   }
   return os;

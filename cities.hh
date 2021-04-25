@@ -19,8 +19,8 @@ public:
   // Generates and returns a new permutation of all the numbers from 0 to len-1 (with no skipped or repeated indices).
   permutation_t random_permutation(unsigned len);
 
-  std::istream& operator>> (std::istream& is);
-  std::ostream& operator<< (std::ostream& os);
+  friend std::istream& operator>> (std::istream& is, Cities& cities);
+  friend std::ostream& operator<< (std::ostream& os, Cities& cities);
 
 private:
   std::vector<coord_t> map_;

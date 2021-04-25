@@ -8,11 +8,8 @@ int main(int argc, char* argv[]) {
   std::ofstream ofile("shortest.tsv");  // file stream to write
 
   // read file
-  
-
-  for (int i; i<map.size(); i++) {
-    std::cout << "x:" << map[i].first << " y:" << map[i].second << std::endl;
-  }
+  Cities cities;
+  ifile >> cities;
 
   int itercount = 1000;
 }
