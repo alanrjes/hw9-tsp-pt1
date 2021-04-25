@@ -1,9 +1,18 @@
 #include "cities.hh"
+#include <fstream>
 #include <iostream>
 
 int main(int argc, char* argv[]) {
-  for (int i=1; i<argc, i++) {  // if the user gives multiple arguments, loop through and do all because why not, they asked for it
-    char* map = argv[i];
-    // do stuff
+  char* filename = argv[1];  // if the user gives multiple file arguments, just use the first
+  std::ifstream ifile(filename);  // file stream to read
+  std::ofstream ofile("shortest.tsv");  // file stream to write
+
+  // read file
+  
+
+  for (int i; i<map.size(); i++) {
+    std::cout << "x:" << map[i].first << " y:" << map[i].second << std::endl;
   }
+
+  int itercount = 1000;
 }

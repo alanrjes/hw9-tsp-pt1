@@ -1,15 +1,13 @@
 #include "cities.hh"
-#include <cmath>
-
-Cities::Cities(std::vector<coord_t> map) {  // constructor
-  map_ = map;
-}
+#include <cmath>  // std::sqrt
+#include <algorithm>  // std::random_shuffle
 
 std::istream& Cities::operator>> (std::istream& is) {
-  int len = map_.size();
-  for (int i=0; i<len; i++) {
-    coord_t coords = map_[i];
-    is>> std::get<0>(coords)>> std::get<1>(coords);
+  coord_t coords;
+  int i = 0;
+  while (is>> coords.first>> coords.second) {
+    map_[i] = coords;
+    i++;
   }
   return is;
 }
@@ -18,7 +16,7 @@ std::ostream& Cities::operator<< (std::ostream& os) {
   int len = map_.size();
   for (int i=0; i<len; i++) {
     coord_t coords = map_[i];
-    os<< std::get<0>(coords)<< std::get<1>(coords);
+    os<< coords.first<< coords.second;
   }
   return os;
 }
@@ -37,7 +35,7 @@ double Cities::total_path_distance(const permutation_t& ordering) const {
     else {
       coords = map_[ordering[i]];  // coords of next city in permutation, adjusted by ordering index
     }
-    double subdist = std::sqrt(std::pow((std::get<0>(coords) - std::get<0>(prevcoords)), 2) + std::pow((std::get<1>(coords) - std::get<1>(prevcoords)), 2));
+    double subdist = std::sqrt(std::pow((coords.first - prevcoords.first), 2) + std::pow((coords.second - prevcoords.second), 2));
     dist += subdist;
     prevcoords = coords;
   }
@@ -51,9 +49,13 @@ Cities Cities::reorder(const permutation_t& ordering) const {
     coord_t coords = nmap[ordering[i]];
     nmap[i] = coords;
   }
-  return Cities(nmap);
+  Cities ncities;
+  ncities.map_ = nmap;
+  return ncities;
 }
 
-permutation_t Cities::random_permutation(unsigned len) {
-  //
+Cities::permutation_t Cities::random_permutation(unsigned len) {
+  permutation_t ordering{0, 1, 2, 3, 4, 5, 6, 7, 8};
+  std::random_shuffle(ordering.begin(), ordering.end());
+  return ordering;
 }
