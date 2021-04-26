@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
   Cities cities;
   ifile >> cities;  // read file map to cities object
 
-  int itercount = std::pow(10, 6);
+  int itercount = std::pow(10, 7);
   Cities::permutation_t bestroute;
   double bestdist;
   for (int i=0; i<itercount; i++) {
@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
     if (ndist < bestdist || !i) {  // update bestroute if better ordering of route or first iteration
       bestroute = nroute;
       bestdist = ndist;
-      std::cout << i << "    " << bestdist << std::endl;
+      std::cout << i << " " << bestdist << std::endl;
     }
   }
   Cities bestcities = cities.reorder(bestroute);
