@@ -17,7 +17,7 @@ public:
   // Given a permutation in a Cities object, compute the distance through all the cities in the given order, returning to the first city.
   double total_path_distance(const permutation_t& ordering) const;
   // Generates and returns a new permutation of all the numbers from 0 to len-1 (with no skipped or repeated indices).
-  permutation_t random_permutation(unsigned len);
+  permutation_t random_permutation();
 
   friend std::istream& operator>> (std::istream& is, Cities& cities);
   friend std::ostream& operator<< (std::ostream& os, Cities& cities);

@@ -1,12 +1,16 @@
 #include "cities.hh"
 #include <cmath>  // std::sqrt
+#include <numeric>  // std::iota
 #include <algorithm>  // std::random_shuffle
+#include <random>
+#include <ctime>
+#include <iostream>
 
 std::istream& operator>> (std::istream& is, Cities& cities) {
   Cities::coord_t coords;
   int i = 0;
   while (is>> coords.first>> coords.second) {
-    cities.map_[i] = coords;
+    cities.map_.push_back(coords);
     i++;
   }
   return is;
@@ -16,7 +20,7 @@ std::ostream& operator<< (std::ostream& os, Cities& cities) {
   int len = cities.map_.size();
   for (int i=0; i<len; i++) {
     Cities::coord_t coords = cities.map_[i];
-    os<< coords.first<< coords.second;
+    os<< coords.first<< " "<< coords.second<< "\n";
   }
   return os;
 }
@@ -46,7 +50,7 @@ Cities Cities::reorder(const permutation_t& ordering) const {
   int len = ordering.size();
   std::vector<coord_t> nmap(len);
   for (int i=0; i<len; i++) {
-    coord_t coords = nmap[ordering[i]];
+    coord_t coords = map_[ordering[i]];
     nmap[i] = coords;
   }
   Cities ncities;
@@ -54,8 +58,12 @@ Cities Cities::reorder(const permutation_t& ordering) const {
   return ncities;
 }
 
-Cities::permutation_t Cities::random_permutation(unsigned len) {
-  permutation_t ordering{0, 1, 2, 3, 4, 5, 6, 7, 8};
-  std::random_shuffle(ordering.begin(), ordering.end());
+Cities::permutation_t Cities::random_permutation() {
+  int len = map_.size();
+  permutation_t ordering(len);
+  std::iota(std::begin(ordering), std::end(ordering), 0);  // populate ordering vector {0, 1, 2...len}
+
+  std::srand(unsigned(std::time(0)));  // seed randomization
+  std::random_shuffle(std::begin(ordering), std::end(ordering));  // randomly shuffle vector
   return ordering;
 }

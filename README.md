@@ -11,7 +11,7 @@ Uh oh! You waited too long to sell last term's textbooks back to the Reed bookst
 2. *Cities operator<< ()* : Take a stream and *Cities* object and write the city object map to the stream.
 3. *Cities total_path_distance()* : Return the total distance to travel through all cities in the permutation of the *Cities* object, returning to the first city.
 4. *Cities reorder()* : Take a permutation and return a new *Cities* object with the city coordinates indexed in the order of the permutation.
-5. *Cities random_permutation()* : Take the number of cities in a map and return a "very random" new permutation.
+5. *Cities random_permutation()* : Return a "very random" new permutation of a cities object.
 6. *tsp.cc main()* : Take a map and iterate over random permutations of the cities. On each iteration, compare the *total_path_distance* of each, and print out the iteration number and distance result. After a certain number of iterations, save the best permutation to a *shortest.tsv* file.
 7. Visualize results, ???, profit.
 
