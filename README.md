@@ -13,7 +13,7 @@ Uh oh! You waited too long to sell last term's textbooks back to the Reed bookst
 4. *Cities reorder()* : Take a permutation and return a new *Cities* object with the city coordinates indexed in the order of the permutation.
 5. *Cities random_permutation()* : Return a "very random" new permutation of a cities object.
 6. *tsp.cc main()* : Take a map and iterate over random permutations of the cities. On each iteration, compare the *total_path_distance* of each, and print out the iteration number and distance result. After a certain number of iterations, save the best permutation to a *shortest.tsv* file.
-7. Visualize results, ???, profit.
+7. *speed.gif* and *shortest.gif* : Visualize results using gnuplot. Sample graphs are generated from 10 million iterations, for moderately better consistency with number of cities in *challenge.tsv* than the shorter runtime of a million iterations.
 
 **Authors**
 
